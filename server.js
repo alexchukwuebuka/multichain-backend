@@ -176,6 +176,9 @@ app.get('/api/getData', async (req, res) => {
       email: user.email,
       funded: user.funded,
       invest: user.investment,
+      IRAinvest: user.IRAinvestment,
+      IRAstatus: user.IRAstatus,
+      IRAtotal: user.IRAtotal,
       transaction: user.transaction,
       withdraw: user.withdraw,
       refBonus:user.refBonus,
@@ -501,7 +504,7 @@ app.post('/api/invest', async (req, res) => {
         await User.updateOne(
         { email: email },
         {
-          $set: { IRAstatus: true },
+          $set: { IRAstatus: true, IRAtotal : user.IRAtotal + req.body.amount},
           $push: {
             IRAinvestment: 
             {
