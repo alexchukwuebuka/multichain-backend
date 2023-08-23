@@ -475,198 +475,58 @@ app.post('/api/invest', async (req, res) => {
 
     const money = (() => {
       switch (req.body.percent) {
-        case '5%':
-          return (req.body.amount * 5) / 100
-        case '7%':
-          return (req.body.amount * 7) / 100
         case '9%':
           return (req.body.amount * 9) / 100
-        case '11%':
-          return (req.body.amount * 11) / 100
+        case '12%':
+          return (req.body.amount * 12) / 100
         case '15%':
           return (req.body.amount * 15) / 100
         case '18%':
           return (req.body.amount * 18) / 100
+        case '20%':
+          return (req.body.amount * 20) / 100
+        case '25%':
+          return (req.body.amount * 25) / 100
+        case '45%':
+          return (req.body.amount * 45) / 100
+        case '70%':
+          return (req.body.amount * 70) / 100
+        case '90%':
+          return (req.body.amount * 90) / 100
       }
     })()
     if (user.capital >= req.body.amount) {
       const now = new Date()
-      switch (req.body.duration) {
-        case '3 days':
-              await User.updateOne(
-                { email: email },
-                {
-                  $push: {investment:
-                    {
-                    type:'investment',
-                    amount : req.body.amount,
-                    plan: req.body.plan,
-                    percent:req.body.percent,
-                    startDate: now.toLocaleString(),
-                    endDate: now.setDate(now.getDate() + 432000).toLocaleString(),
-                    profit: money,
-                    ended:259200000,
-                    started:now.getTime(),
-                    periodicProfit:0
-                  },
-                  transaction:{
-                    type:'investment',
-                    amount: req.body.amount,
-                    date: now.toLocaleString(),
-                    balance: user.funded,
-                    id:crypto.randomBytes(32).toString("hex")
-                  }
-                }, $set :{totalprofit : user.totalprofit + (money *3)}
-              }
-              )
-          break;
-        case '4 days':
-          await User.updateOne(
-                { email: email },
-                {
-                  $push: {investment:
-                    {
-                    type:'investment',
-                    amount : req.body.amount,
-                    plan: req.body.plan,
-                    percent:req.body.percent,
-                    startDate: now.toLocaleString(),
-                    endDate: now.setDate(now.getDate() + 432000).toLocaleString(),
-                    profit: money,
-                    ended:345600000,
-                    started:now.getTime(),
-                    periodicProfit:0
-                  },
-                  transaction:{
-                    type:'investment',
-                    amount: req.body.amount,
-                    date: now.toLocaleString(),
-                    balance: user.funded,
-                    id:crypto.randomBytes(32).toString("hex")
-                  }
-                }, $set :{totalprofit : user.totalprofit + (money *4)}
-              }
-              )
-          break;
-        case '7 days':
-              await User.updateOne(
-                { email: email },
-                {
-                  $push: {investment:
-                    {
-                    type:'investment',
-                    amount : req.body.amount,
-                    plan: req.body.plan,
-                    percent:req.body.percent,
-                    startDate: now.toLocaleString(),
-                    endDate: now.setDate(now.getDate() + 432000).toLocaleString(),
-                    profit: money,
-                    ended:604800000,
-                    started:now.getTime(),
-                    periodicProfit:0
-                  },
-                  transaction:{
-                    type:'investment',
-                    amount: req.body.amount,
-                    date: now.toLocaleString(),
-                    balance: user.funded,
-                    id:crypto.randomBytes(32).toString("hex")
-                  }
-                }, $set :{totalprofit : user.totalprofit + (money *7)}
-              }
-              )
-          break;
-        case '8 days':
-              await User.updateOne(
-                { email: email },
-                {
-                  $push: {investment:
-                    {
-                    type:'investment',
-                    amount : req.body.amount,
-                    plan: req.body.plan,
-                    percent:req.body.percent,
-                    startDate: now.toLocaleString(),
-                    endDate: now.setDate(now.getDate() + 432000).toLocaleString(),
-                    profit: money,
-                    ended:691200000,
-                    started:now.getTime(),
-                    periodicProfit:0
-                  },
-                  transaction:{
-                    type:'investment',
-                    amount: req.body.amount,
-                    date: now.toLocaleString(),
-                    balance: user.funded,
-                    id:crypto.randomBytes(32).toString("hex")
-                  }
-                }, $set :{totalprofit : user.totalprofit + (money *8)}
-              }
-              )
-          break;
-        case '10 days':
-              await User.updateOne(
-                { email: email },
-                {
-                  $push: {investment:
-                    {
-                    type:'investment',
-                    amount : req.body.amount,
-                    plan: req.body.plan,
-                    percent:req.body.percent,
-                    startDate: now.toLocaleString(),
-                    endDate: now.setDate(now.getDate() + 432000).toLocaleString(),
-                    profit: money,
-                    ended:864000000,
-                    started:now.getTime(),
-                    periodicProfit:0
-                  },
-                  transaction:{
-                    type:'investment',
-                    amount: req.body.amount,
-                    date: now.toLocaleString(),
-                    balance: user.funded,
-                    id:crypto.randomBytes(32).toString("hex")
-                  }
-                }, $set : {totalprofit : user.totalprofit + (money * 10) }
-              }
-              )
-          break;
-        case '12 days':
-          await User.updateOne(
-            { email: email },
-            {
-              $push: {
-                investment:
-                {
-                  type: 'investment',
-                  amount: req.body.amount,
-                  plan: req.body.plan,
-                  percent: req.body.percent,
-                  startDate: now.toLocaleString(),
-                  endDate: now.setDate(now.getDate() + 432000).toLocaleString(),
-                  profit: money,
-                  ended: 103680000,
-                  started: now.getTime(),
-                  periodicProfit: 0
-                },
-                transaction: {
-                  type: 'investment',
-                  amount: req.body.amount,
-                  date: now.toLocaleString(),
-                  balance: user.funded,
-                  id: crypto.randomBytes(32).toString("hex")
-                }
-              }, $set : { totalprofit: user.totalprofit + (money * 12) }
-              }
-              )
-          break;
-      }
-      
       await User.updateOne(
         { email: email },
         {
-          $set: {capital : user.capital - req.body.amount, withdrawDuration: now.getTime()}
+          $push: {investment: 
+            {
+            type: 'investment',
+              amount: req.body.amount,
+              plan: req.body.plan,
+              percent: req.body.percent,
+              startDate: now.toLocaleString(),
+              endDate: now.setDate(now.getDate() + 432000).toLocaleString(),
+              profit: money,
+              ended: 103680000,
+              started: now.getTime(),
+              periodicProfit: 0
+          },
+          transaction:{
+            type:'investment',
+            amount: req.body.amount,
+            date: now.toLocaleString(),
+            balance: user.funded,
+            id:crypto.randomBytes(32).toString("hex")
+          }
+        }
+      }
+      )
+      await User.updateOne(
+        { email: email },
+        {
+          $set: {capital : user.capital - req.body.amount, withdrawDuration: now.getTime(),totalprofit: user.totalprofit + money}
         }
       )
       res.json({ status: 'ok', amount: req.body.amount })
