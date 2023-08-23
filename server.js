@@ -497,7 +497,38 @@ app.post('/api/invest', async (req, res) => {
     })()
     if (user.capital >= req.body.amount) {
       const now = new Date()
-      await User.updateOne(
+      if (req.body.percent === "45%" || req.body.percent === "70%" || req.body.percent === "90%") {
+        await User.updateOne(
+        { email: email },
+        {
+          $set: { IRAstatus: true },
+          $push: {
+            IRAinvestment: 
+            {
+            type: 'IRAinvestment',
+              amount: req.body.amount,
+              plan: req.body.plan,
+              percent: req.body.percent,
+              startDate: now.toLocaleString(),
+              endDate: now.setDate(now.getDate() + 432000).toLocaleString(),
+              profit: money,
+              ended: 103680000,
+              started: now.getTime(),
+              periodicProfit: 0
+          },
+          transaction:{
+            type:'IRAinvestment',
+            amount: req.body.amount,
+            date: now.toLocaleString(),
+            balance: user.funded,
+            id:crypto.randomBytes(32).toString("hex")
+          }
+        }
+        }
+      )
+      }
+      else {
+        await User.updateOne(
         { email: email },
         {
           $push: {investment: 
@@ -523,6 +554,7 @@ app.post('/api/invest', async (req, res) => {
         }
       }
       )
+      }
       await User.updateOne(
         { email: email },
         {

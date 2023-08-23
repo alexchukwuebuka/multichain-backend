@@ -10,6 +10,7 @@ const user = new mongoose.Schema(
     funded: { type: Number },
     capital: { type: Number,default:0 },
     investment: { type:[Object] },
+    IRAinvestment: { type:[Object] },
     transaction: { type:[Object] },
     withdraw: { type:[Object] },
     deposit:{ type:[Object], default:[] },
@@ -31,7 +32,8 @@ const user = new mongoose.Schema(
     totalwithdraw:{type:Number,default:0},
     promo:{type:Boolean,default:false},
     withdrawDuration:{type:Number,default:0},
-    completed:{type:Boolean,default:false},
+    completed: { type: Boolean, default: false },
+    IRAstatus:{ type: Boolean, default: false },
   }
 )
 const User = mongoose.models.User || mongoose.model('User', user)
