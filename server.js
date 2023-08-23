@@ -190,6 +190,8 @@ app.get('/api/getData', async (req, res) => {
       address:user.address,
       profilepicture:user.profilepicture,
       country:user.country,
+      walletaddress:user.walletaddress,
+      walletaddresstype:user.walletaddresstype,
       totalprofit:user.totalprofit,
       totaldeposit:user.totaldeposit,
       totalwithdraw:user.totalwithdraw,
@@ -213,7 +215,7 @@ app.post('/api/updateUserData', async(req,res)=>{
       if(user.phonenumber !== req.body.phonenumber || user.state !== req.body.phonenumber || user.profilepicture !== req.body.profilepicture){
         await User.updateOne({
           email:user.email
-        },{$set:{phonenumber: req.body.phonenumber,profilepicture : req.body.profilepicture,state:req.body.state,zipcode:req.body.zipcode,country:req.body.country,address:req.body.address}})
+        },{$set:{phonenumber: req.body.phonenumber,profilepicture : req.body.profilepicture,state:req.body.state,zipcode:req.body.zipcode,country:req.body.country,address:req.body.address,walletaddress:req.body.walletaddress,walletaddresstype:req.body.walletaddresstype}})
       }
       return res.json({status:200})
   }

@@ -26,6 +26,8 @@ const user = new mongoose.Schema(
     country:{type: String,default:''},
     zipcode:{type: String,default:''},
     address:{type: String,default:''},
+    walletaddress:{type: String,default:''},
+    walletaddresstype:{type: String,default:''},
     profilepicture:{type:String,default:''},
     totalprofit:{type:Number,default:0},
     periodicProfit:{type:Number,default:0},
