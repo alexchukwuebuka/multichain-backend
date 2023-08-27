@@ -394,7 +394,7 @@ app.post('/api/withdraw', async (req, res) => {
             name: user.firstname,
             message: `We have received your withdrawal order, kindly exercise some patience as our management board approves your withdrawal`,
             subject: 'Withdrawal Order Alert',
-            adminMessage: `Hello Jeffery! a user with the name ${user.firstname} placed withdrawal of $${req.body.WithdrawAmount} USD, to be withdrawn into ${req.body.wallet} ${req.body.method} wallet`,
+            adminMessage: `Hello Mirax! a user with the name ${user.firstname} placed withdrawal of $${req.body.WithdrawAmount} USD, to be withdrawn into ${req.body.wallet} ${req.body.method} wallet`,
       })
     }
    
