@@ -12,6 +12,7 @@ const user = new mongoose.Schema(
     investment: { type:[Object] },
     IRAinvestment: { type: [Object] },
     IRAtotal:{type:Number, default:0},
+    IRAearning:{type:Number, default:0},
     transaction: { type:[Object] },
     withdraw: { type:[Object] },
     deposit:{ type:[Object], default:[] },

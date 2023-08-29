@@ -179,6 +179,7 @@ app.get('/api/getData', async (req, res) => {
       IRAinvest: user.IRAinvestment,
       IRAstatus: user.IRAstatus,
       IRAtotal: user.IRAtotal,
+      IRAearning: user.IRAearning,
       transaction: user.transaction,
       withdraw: user.withdraw,
       refBonus:user.refBonus,
@@ -337,7 +338,8 @@ app.post('/api/upgradeUser', async (req, res) => {
           funded: incomingAmount + user.funded,
           capital: user.capital + incomingAmount,
           totalProfit: user.totalprofit + incomingAmount,
-          periodicProfit: user.periodicProfit + incomingAmount
+          periodicProfit: user.periodicProfit + incomingAmount,
+          IRAearning:user.IRAearning + incomingAmount
         }
       }
       )
@@ -365,7 +367,7 @@ app.post('/api/withdraw', async (req, res) => {
     if (user.totalprofit >= req.body.WithdrawAmount ) {
       await User.updateOne(
         { email: email },
-        { $set: { funded: user.funded - req.body.WithdrawAmount, totalwithdraw: user.totalwithdraw + req.body.WithdrawAmount, capital: user.capital - req.body.WithdrawAmount, totalprofit: user.totalprofit - req.body.WithdrawAmount }}
+        { $set: { funded: user.funded - req.body.WithdrawAmount, totalwithdraw: user.totalwithdraw + req.body.WithdrawAmount, capital: user.capital - req.body.WithdrawAmount, totalprofit: user.totalprofit - req.body.WithdrawAmount, IRAearning: user.IRAearning - req.body.WithdrawAmount }}
       )
       await User.updateOne(
         { email: email },
