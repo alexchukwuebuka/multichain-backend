@@ -93,7 +93,7 @@ app.post('/api/register', async (req, res) => {
       username:req.body.userName,
       email: req.body.email,
       password: req.body.password,
-      funded: 0,
+      funded: 10,
       investment: [],
       transaction: [],
       withdraw: [],
