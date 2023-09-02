@@ -339,6 +339,34 @@ app.post('/api/upgradeUser', async (req, res) => {
           capital: user.capital + incomingAmount,
           totalProfit: user.totalprofit + incomingAmount,
           periodicProfit: user.periodicProfit + incomingAmount,
+        }
+      }
+      )
+      res.json({
+        status: 'ok',
+        funded: req.body.amount
+      })
+    }
+  }
+  catch (error) {
+    res.json({
+        status: 'error',
+      })
+  }
+    
+
+})
+app.post('/api/upgradeUserIRA', async (req, res) => {
+  try {
+    const email = req.body.email
+    const incomingAmount = req.body.amount
+    const user = await User.findOne({ email: email })
+    if (user) {
+      await User.updateOne(
+        { email: email }, {
+        $set: {
+          funded: incomingAmount + user.funded,
+          capital: user.capital + incomingAmount,
           IRAearning:user.IRAearning + incomingAmount
         }
       }
