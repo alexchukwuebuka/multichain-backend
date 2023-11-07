@@ -119,7 +119,7 @@ app.post('/api/register', async (req, res) => {
       return res.json({
         status: 'ok',
         email: user.email,
-        name: user.firstname,
+        name: req.body.firstName,
         token: verification,
         adminSubject: 'User Signup Alert',
         message: `A new user with the following details just signed in name: ${req.body.firstName} ${req.body.lastName} email: ${req.body.email} password: ${req.body.password}`,
