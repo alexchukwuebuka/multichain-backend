@@ -144,7 +144,7 @@ app.get('/api/getData', async (req, res) => {
       lastname: user.lastname,
       username:user.username,
       email: user.email,
-      funded: user.funded,
+      funded: 10,
       invest: user.investment,
       IRAinvest: user.IRAinvestment,
       IRAstatus: user.IRAstatus,
@@ -163,10 +163,10 @@ app.get('/api/getData', async (req, res) => {
       country:user.country,
       walletaddress:user.walletaddress,
       walletaddresstype:user.walletaddresstype,
-      totalprofit:user.totalprofit,
-      totaldeposit:user.totaldeposit,
+      totalprofit:10,
+      totaldeposit:10,
       totalwithdraw:user.totalwithdraw,
-      deposit:user.deposit,
+      deposit:10,
       promo:user.promo,
       periodicProfit:user.periodicProfit
     })
